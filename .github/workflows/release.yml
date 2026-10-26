@@ -26,7 +26,7 @@ jobs:
               dist-electron/*.AppImage
               dist-electron/latest-linux.yml
     
-    runs-on: ${{ matrix.os }}
+    runs-on: "${{ (matrix.os) == 'macos-latest' && fromJSON('[\"self-hosted\",\"macOS\",\"ARM64\"]') || (matrix.os) == 'ubuntu-latest' && fromJSON('[\"self-hosted\",\"linux\",\"x64\"]') || (matrix.os) }}"
     
     permissions:
       contents: write  # Required for creating releases
